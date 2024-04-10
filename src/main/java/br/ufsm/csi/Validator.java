@@ -95,11 +95,13 @@ public class Validator<T> implements Validatable<T>{
             if (field.isAnnotationPresent(Validate.class)) {
                 Validate annotation = field.getAnnotation(Validate.class);
                 field.setAccessible(true);
-
                 if (!errors.isEmpty()) {
-                    throw new ValidationException(annotation.message() + " " + errors);
+                    errors.add(annotation.message());
                 }
             }
+        }
+        if (!errors.isEmpty()) {
+            throw new ValidationException(errors);
         }
     }
 }

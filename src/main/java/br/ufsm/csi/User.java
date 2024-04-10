@@ -2,16 +2,16 @@ package br.ufsm.csi;
 
 //Usei Delombok para gerar getter, setters, equals, hashcode e contructors
 public class User {
-    @Validate
+    @Validate(message = "Nome inválido")
     @Lenght(min = 10, max = 25, message = "Tamanho de nome muito curto ou muito longo!")
-    @NotNull
+    @NotNull(message = "NULO")
     private String name;
     @Validate(message = "Idade inválida!")
     @Min(value = 18, message = "O usuário deve ter no mínimo 18 anos")
     @Max(value = 60, message = "O usuário deve ter no máximo 60 anos")
-    private String age;
+    private Long age;
 
-    public User(String name, String age) {
+    public User(String name, Long age) {
         this.name = name;
         this.age = age;
     }
@@ -23,7 +23,7 @@ public class User {
         return this.name;
     }
 
-    public String getAge() {
+    public Long getAge() {
         return this.age;
     }
 
@@ -31,7 +31,7 @@ public class User {
         this.name = name;
     }
 
-    public void setAge(String age) {
+    public void setAge(Long age) {
         this.age = age;
     }
 
